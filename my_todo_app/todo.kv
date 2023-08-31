@@ -1,0 +1,76 @@
+<TodoLayout>:
+    orientation: 'vertical'
+    padding: [10, 10, 10, 10]
+    spacing: 10
+
+    canvas.before:
+        Color:
+            rgba: 0.2, 0.2, 0.2, 1  # Fundo cinza escuro
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        size_hint: 1, 0.1
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.5, 0.1, 1  # Cor de destaque para o título
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Lista de Tarefas Elegante'
+            font_size: 24
+            color: [1, 1, 1, 1]  # Texto branco
+
+    ScrollView:
+        size_hint: 1, 0.6
+        BoxLayout:
+            id: task_list
+            padding: [0, 10, 0, 10]
+            orientation: 'vertical'
+            size_hint_y: None
+            height: 500  # ou qualquer valor que pareça apropriado
+            spacing: 10  # adiciona espaço entre os widgets
+
+            Button:
+                canvas.before:
+                    Color:
+                        rgba: 1, 0, 0, 1  # Cor vermelha para debug
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+    TextInput:
+        id: description_input
+        hint_text: 'Digite a descrição aqui (opcional)'
+        multiline: True
+        size_hint: 1, 0.1 # 10% da altura
+        font_size: 18
+
+    BoxLayout:
+        size_hint: 1, 0.1 # 10% da altura
+        canvas.before:
+            Color:
+                rgba: 0.3, 0.3, 0.3, 1  # Fundo cinza um pouco mais claro
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        TextInput:
+            id: task_input
+            hint_text: 'Digite uma nova tarefa aqui'
+            multiline: False
+            size_hint: 0.8, 1 # 80% da largura
+            font_size: 24
+
+        Button:
+            text: '+'
+            size_hint: 0.2, 1 # 20% da largura
+            background_color: [0.1, 0.5, 0.1, 1]  # Cor de destaque
+            on_press:
+                root.add_task()
+                self.background_color = [0, 0.4, 0, 1]  # Mudar para um tom mais escuro ao pressionar
+            on_release:
+                self.background_color = [0.1, 0.5, 0.1, 1]  # Restaurar cor original
