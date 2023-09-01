@@ -4,9 +4,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 from kivy.uix.popup import Popup
 from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 from utils import format_tasks  # Suppose you created a utility function for task formatting
 from services import TaskService  # Suppose you created a service class for task operations
-from utils import format_tasks  # Suppose you created a utility function for task formatting
 
 class TodoLayout(BoxLayout):
     def __init__(self, **kwargs):
@@ -16,10 +16,27 @@ class TodoLayout(BoxLayout):
     def on_task_click(self, task_id):
         pop = Popup(title='Opções', size_hint=(None, None), size=(400, 400))
 
+        box = BoxLayout(orientation='vertical')
+
+        new_task_input = TextInput(
+            hint_text='Nova tarefa',
+            size_hint=(1, 0.2),
+        )
+
+        # Botão de deletar
         delete_button = Button(text='Deletar', size_hint=(1, 0.2))
         delete_button.bind(on_press=lambda x: self.delete_task(task_id, pop))
 
-        pop.add_widget(delete_button)
+        # Botão de atualizar
+        update_button = Button(text='Atualizar', size_hint=(1, 0.2))
+        update_button.bind(on_press=lambda x: self.update_task(task_id, new_task_input.text, pop))
+
+        box.add_widget(new_task_input)
+        box.add_widget(delete_button)
+        box.add_widget(update_button)
+
+        pop.content = box
+
         pop.open()
         # pass
 
@@ -37,6 +54,12 @@ class TodoLayout(BoxLayout):
         if sucess:
             self.update_task_list()  # Atualiza a lista de tarefas na interface do usuário
             popup_instance.dismiss()  # Fecha o popup
+
+    def update_task(self, task_id, new_task_text, popup_instance):
+        sucess = TaskService.update_task(task_id, new_task_text)  # Usa a função do módulo de serviço para atualizar a tarefa
+        if sucess:
+            self.update_task_list()
+            popup_instance.dismiss()
 
     def update_task_list(self):
         print("Limpando widgets antigos...")

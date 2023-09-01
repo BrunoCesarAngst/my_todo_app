@@ -49,6 +49,29 @@ class TaskService:
             raise CustomException("Erro ao listar tarefas")
 
     @staticmethod
+    def get_task(task_id):
+        try:
+            task = TodoItem.get_by_id(TodoItem.id == task_id)
+            return task
+        except Exception as e:
+            logging.error(f"Erro ao listar tarefas: {e}")
+            raise CustomException("Erro ao listar tarefas")
+
+    @staticmethod
+    def save_task_changes(task_instance):
+        task_instance.updated_at = datetime.now()
+        return task_instance.save()
+
+    @staticmethod
+    def edit_task(task_id, new_content):
+        task_to_edit = TaskService.get_task(task_id)
+        if not task_to_edit:
+            raise CustomException("Tarefa não encontrada")
+
+        task_to_edit.task = new_content
+        return TaskService.save_task_changes(task_to_edit)
+
+    @staticmethod
     def list_tasks():
         try:
             return [(task.task, task.description, task.created_at, task.updated_at) for task in TodoItem.select()]
