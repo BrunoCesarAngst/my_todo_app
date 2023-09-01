@@ -4,6 +4,7 @@ from models import TodoItem
 from datetime import datetime
 import logging
 
+
 class CustomException(Exception):
     def __init__(self, message, code=400):
         super().__init__(message)

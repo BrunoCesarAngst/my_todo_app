@@ -5,8 +5,8 @@ from kivy.clock import Clock
 from kivy.uix.popup import Popup
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
-from utils import format_tasks  # Suppose you created a utility function for task formatting
 from services import TaskService  # Suppose you created a service class for task operations
+
 
 class TodoLayout(BoxLayout):
     def __init__(self, **kwargs):
@@ -44,10 +44,10 @@ class TodoLayout(BoxLayout):
         task = self.ids.task_input.text  # Pega o texto do TextInput
         description = self.ids.description_input.text  # Pega o texto do TextInput
         if TaskService.add_task(task, description):  # Usa a função do módulo de serviço para adicionar a tarefa
-          self.update_task_list()  # Atualiza a lista de tarefas na interface do usuário
-          self.ids.task_input.text = ''  # Limpa o TextInput
-          self.ids.description_input.text = ''  # Limpa o TextInput
-          self.ids.task_input.focus = True  # Retorna o foco para o TextInput
+            self.update_task_list()  # Atualiza a lista de tarefas na interface do usuário
+            self.ids.task_input.text = ''  # Limpa o TextInput
+            self.ids.description_input.text = ''  # Limpa o TextInput
+            self.ids.task_input.focus = True  # Retorna o foco para o TextInput
 
     def delete_task(self, task_id, popup_instance):
         sucess = TaskService.delete_task(task_id)  # Usa a função do módulo de serviço para deletar a tarefa
@@ -70,8 +70,7 @@ class TodoLayout(BoxLayout):
             # print(task)
             task_button = Button(
                 text=task['task'],
-                on_press=lambda instace, task_id=task['id']: self.on_task_click(task_id),
-                )
+                on_press=lambda instace, task_id=task['id']: self.on_task_click(task_id))
             self.ids.task_list.add_widget(task_button)
         print("Widgets atualmente em task_list:", self.ids.task_list.children)
 
