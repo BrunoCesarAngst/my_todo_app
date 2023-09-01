@@ -7,6 +7,12 @@ repos:
     -   id: check-yaml  # Verifica se os arquivos YAML estão bem formados
     -   id: check-json  # Verifica se os arquivos JSON estão bem formados
 
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: 'v1.5.7'  # Use a versão desejada
+    hooks:
+    -   id: autopep8 # Formata o código Python
+        args: ['--aggressive', '--aggressive', '--in-place']  # Argumentos para autopep8
+
 # -   repo: https://gitlab.com/pycqa/flake8
 #     rev: 3.8.4  # Escolha uma versão específica para evitar surpresas
 #     hooks:
