@@ -19,7 +19,7 @@ class TodoLayout(BoxLayout):
         box = BoxLayout(orientation='vertical')
 
         new_task_input = TextInput(
-            hint_text='Nova tarefa',
+            hint_text='Atualizar tarefa',
             size_hint=(1, 0.2),
         )
 
