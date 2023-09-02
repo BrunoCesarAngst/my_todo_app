@@ -1,0 +1,24 @@
+name: cz_conventional_commits
+version: '1.0.0'
+tag_format: "{version}"
+increment: "minor"
+
+commitizen:
+  change_type_order:
+    - feat
+    - fix
+    - chore
+    - docs
+    - style
+    - refactor
+    - perf
+    - test
+  change_types:
+    feat: "New Features | Criação de novas funcionalidades"
+    fix: "Bug Fixes | Correção de bugs"
+    chore: "Chores | Manutenção e melhorias"
+    docs: "Documentation Changes | Mudanças na documentação"
+    style: "Style Changes | Mudanças de formatação e estilo"
+    refactor: "Code Refactoring | Refatoração de código"
+    perf: "Performance Improvements | Melhorias de performance"
+    test: "Tests | Adição de testes"

@@ -1,0 +1,57 @@
+# Seções personalizadas
+section_regexps = [
+    ("New Features", "New Features"),
+    ("Bug Fixes", "Bug Fixes"),
+    ("Chores", "Chores"),
+    ("Documentation Changes", "Documentation Changes"),
+    ("Style Changes", "Style Changes"),
+    ("Code Refactoring", "Code Refactoring"),
+    ("Performance Improvements", "Performance Improvements"),
+    ("Tests", "Tests")
+]
+
+# Ignorar determinados commits
+ignore_regexps = [
+    r"Merge.*"
+]
+
+# Ignorar commits de certos autores
+ignore_authors = ["some-bot", "jenkins"]
+
+# Formato do subject
+subject_format = "{title}"
+
+# Formato de cada entrada
+entry_format = "- {desc} ({author})"
+
+# Final de linha personalizado
+line_end = "\n"
+
+# Token de descrição
+body_split_regexp = r"[\n\r]+[Ee]-?mail:"
+
+# Ordem de seção personalizada
+def section_sort(section_label):
+    order = [
+        "New Features",
+        "Bug Fixes",
+        "Chores",
+        "Documentation Changes",
+        "Style Changes",
+        "Code Refactoring",
+        "Performance Improvements",
+        "Tests"
+        ]
+    if section_label in order:
+        return order.index(section_label)
+    return len(order)
+
+# Formato de saída
+output_format = """{pkginfo}{first_commit_date} - {last_commit_date}
+
+{sections}
+"""
+
+pkginfo_format = """{name} {version}
+
+"""

@@ -1,6 +1,6 @@
 # models.py
 
-from peewee import Model, SqliteDatabase, CharField, TextField, DateTimeField
+from peewee import Model, SqliteDatabase, CharField, TextField, DateTimeField, AutoField
 from datetime import datetime
 
 database = SqliteDatabase('my_todo.db')
@@ -17,5 +17,6 @@ class TimeStampedModel(BaseModel):
 
 
 class TodoItem(TimeStampedModel):
+    id = AutoField(primary_key=True)
     task = CharField()
     description = TextField(null=True)

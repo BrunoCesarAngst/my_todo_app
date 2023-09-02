@@ -1,5 +1,4 @@
 {
-  "python.analysis.extraPaths": [
-    "./my_todo_app"
-  ]
+  "python.analysis.extraPaths": ["./my_todo_app"],
+  "python.analysis.typeCheckingMode": "basic"
 }

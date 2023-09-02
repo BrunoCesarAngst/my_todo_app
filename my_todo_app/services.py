@@ -10,6 +10,7 @@ class CustomException(Exception):
         super().__init__(message)
         self.code = code
 
+
 class TaskService:
     @staticmethod
     def add_task(task_text, description=None):
