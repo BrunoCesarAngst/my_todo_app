@@ -6,11 +6,10 @@ authors = ["BrunoCesarAngst <bruno.angst@rede.ulbra.br>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 kivy = "^2.2.1"
 kivy-garden = "^0.1.5"
 peewee = "^3.16.3"
-commitizen = "^3.7.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.4.0"
@@ -18,11 +17,3 @@ pytest = "^7.4.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-# [tool.semantic_release]
-# version_variable = "my_todo_app/__init__.py:__version__"
-# upload_to_pypi = false
-# upload_to_release = false
-# commit_version_number = true
-# commit_subject = "chore(release): release v{version}"
-# commit_message = "chore(release): release v{version}"
